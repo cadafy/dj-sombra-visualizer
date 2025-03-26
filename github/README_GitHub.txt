@@ -1,1 +1,0 @@
-Sube esta carpeta a GitHub Pages (repositorio público) y activa Pages en Settings.
