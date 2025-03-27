@@ -4,4 +4,8 @@
   "framework": "vite",
   "installCommand": "npm install",
   "ignoreCommand": "false"
-}
+}> vercel.json
+
+git add vercel.json
+git commit -m "🛠 Añadido vercel.json para Vercel"
+git push origin master
