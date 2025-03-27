@@ -1,38 +1,26 @@
 import React from 'react';
 
+import React, { useEffect } from 'react';
+
 function App() {
-  return (
-    <div style={{
-      fontFamily: 'Poppins, sans-serif',
-      background: 'black',
-      color: 'white',
-      minHeight: '100vh',
-      padding: '2rem',
-      textAlign: 'center'
-    }}>
-      <h1 style={{
-        fontSize: '3rem',
-        color: '#ff0055',
-        textShadow: '2px 2px 8px #fff'
-      }}>
-        DJ Sombra Caliente 🎧🔥
+  useEffect(() => {
+    if (window.location.hostname !== 'dj-sombra.vercel.app') {
+      window.location.href = 'https://dj-sombra.vercel.app';
+    }
+  }, []); {
+   return (
+    <div className="text-white min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-black via-zinc-900 to-neutral-800 p-4">
+      <h1 className="text-5xl font-bold mb-6 drop-shadow-md text-center">
+        🎧 Bienvenido al Visualizer de DJ Sombra Caliente 🔥
       </h1>
-      <p style={{
-        fontSize: '1.25rem',
-        marginTop: '1rem',
-        color: '#ccc'
-      }}>
-        ¡Bienvenido a la web oficial! Siente el ritmo. Sube tu mix. Conecta con el flow.
+      <p className="text-lg text-center max-w-xl text-neutral-300 mb-8">
+        ¡Enciende la pista con visuales únicos! Este será tu espacio para mezclar,
+        subir tu contenido, y compartir tu flow.
       </p>
-      <p style={{
-        marginTop: '2rem',
-        fontSize: '0.9rem',
-        color: '#666'
-      }}>
-        powered by React + Vite + GitHub Pages 💻
-      </p>
+      <p className="italic text-sm text-neutral-400">Powered by DJ Console 💻</p>
     </div>
   );
 }
 
 export default App;
+
