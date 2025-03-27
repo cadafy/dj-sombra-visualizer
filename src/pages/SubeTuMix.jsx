@@ -1,0 +1,1 @@
+export default function SubeTuMix() { return (<div>Sube tu Mix</div>); }
