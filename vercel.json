@@ -1,6 +1,6 @@
 {
-  "buildCommand": "npm install && npm run build",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD . || echo 'Changes detected'",
+  "buildCommand": "npm run vercel-build",
   "outputDirectory": "dist",
-  "installCommand": "npm install --include=dev"
+  "installCommand": "npm install",
+  "ignoreCommand": "false"
 }
