@@ -1,6 +1,5 @@
 {
-  "buildCommand": "npm run vercel-build",
+  "buildCommand": "npm install && npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm install",
-  "ignoreCommand": "false"
+  "installCommand": "npm install"
 }
