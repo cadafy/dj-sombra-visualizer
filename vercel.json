@@ -1,11 +1,6 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "npm install && npm run build",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD . || echo 'Changes detected'",
   "outputDirectory": "dist",
-  "framework": "vite",
-  "installCommand": "npm install",
-  "ignoreCommand": "false"
-}> vercel.json
-
-git add vercel.json
-git commit -m "🛠 Añadido vercel.json para Vercel"
-git push origin master
+  "installCommand": "npm install --include=dev"
+}
