@@ -26,7 +26,7 @@ export default function SubeTuMix() {
 
     try {
       // Referencias a Firebase
-      const storage = getStorage(app);
+      const storage = getStorage(app, "gs://dj-sombra-visualizer.firebasestorage.app");
       const firestore = getFirestore(app);
 
       const archivoRef = ref(storage, `mixes/${Date.now()}-${archivo.name}`);
@@ -50,11 +50,11 @@ export default function SubeTuMix() {
         setArchivo(null);
         setCargando(false);
       });
-    } catch (err) {
-      console.error(err);
-      setError("Ocurrió un error inesperado.");
-      setCargando(false);
-    }
+   } catch (err) {
+  console.error("Error al subir:", err); // <-- Mostrará en consola el error real
+  setMensaje("");
+  setError("Error al subir el archivo.");
+}
   };
 
   return (
