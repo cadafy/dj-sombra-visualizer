@@ -1,6 +1,5 @@
 ﻿import { useState } from "react";
 import { motion } from "framer-motion";
-import app from "../firebaseConfig";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { usePageTitle } from "../usePageTitle";

@@ -1,5 +1,7 @@
-// Importa la función para inicializar Firebase
+// Importa las funciones necesarias de Firebase
 import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
 // Tu configuración personalizada
 const firebaseConfig = {
@@ -14,4 +16,9 @@ const firebaseConfig = {
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 
-export default app;
+// Instancias de servicios
+const storage = getStorage(app);
+const db = getFirestore(app);
+
+// Exporta todo lo necesario
+export { storage, db };
