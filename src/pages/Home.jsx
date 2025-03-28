@@ -7,7 +7,9 @@ const Home = () => {
       <Helmet>
         <title>Inicio | DJ Sombra Caliente</title>
       </Helmet>
-      <h1 className="text-3xl font-bold mb-4">Bienvenido a DJ Sombra Caliente 🎧🔥</h1>
+      <h1 className="text-3xl font-bold mb-4">
+  🎧 Bienvenido de nuevo a DJ Sombra Caliente 🔥
+</h1>
       <p className="mb-6">Descubre música, fotos y noticias del mundo DJ.</p>
 
       <nav className="mt-4 grid gap-2 w-fit mx-auto text-left">
