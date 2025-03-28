@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import { db } from '@/src/firebaseConfig';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
