@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import app from "../firebaseConfig";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { usePageTitle } from "../usePageTitle";
 
 export default function SubeTuMix() {
   const [nombre, setNombre] = useState("");
@@ -56,6 +57,8 @@ export default function SubeTuMix() {
   setError("Error al subir el archivo.");
 }
   };
+
+usePageTitle("Sube tu Mix 🎧 - DJ Sombra Caliente");
 
   return (
     <motion.div
