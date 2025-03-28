@@ -1,35 +1,36 @@
 {
   "name": "dj-sombra-caliente",
   "version": "1.0.0",
-  "description": "Sitio oficial DJ Sombra Caliente",
-  "main": "src/main.jsx",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "start": "vite",
     "vercel-build": "vite build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "postinstall": "vite build"
   },
   "keywords": [],
-  "author": "DJ Console & DJ Sombra",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.16",
-    "firebase": "^11.5.0",
+    "firebase": "^10.7.1",
     "framer-motion": "^10.16.1",
-    "gh-pages": "^6.1.1",
-    "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.12.0",
-    "react-router-dom": "^6.21.2",
-    "tailwindcss": "^3.4.1",
-    "vite": "^5.2.0"
-}
- {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
-  ]
+    "react-router-dom": "^6.22.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.3",
+    "vite": "^4.5.2"
+  },
+  "vercel": {
+    "rewrites": [
+      {
+        "source": "/(.*)",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }
