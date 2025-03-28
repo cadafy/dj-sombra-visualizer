@@ -1,25 +1,25 @@
-import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
-  useEffect(() => {
-    document.title = "DJ Sombra Caliente | Inicio";
-  }, []);
-
   return (
-    <main style={{ padding: "2rem" }}>
-      <h1>Bienvenido a DJ Sombra Caliente 🎧🔥</h1>
-      <p>Explora nuestras secciones para subir tu mix, escuchar mezclas, ver fotos y mucho más.</p>
+    <div className="p-4 text-center">
+      <Helmet>
+        <title>Inicio | DJ Sombra Caliente</title>
+      </Helmet>
+      <h1 className="text-3xl font-bold mb-4">Bienvenido a DJ Sombra Caliente 🎧🔥</h1>
+      <p className="mb-6">Descubre música, fotos y noticias del mundo DJ.</p>
 
-      <ul style={{ marginTop: "1rem" }}>
-	    <li><a href="/fotos">Fotos</a></li>
-		<Link to="/noticias">Noticias</Link>
-		<li><a href="/galeria">Galería</a></li>
-		<li><a href="/reproduccion">Reproducción</a></li>
-        <li><a href="/sube-tu-mix">Sube tu Mix</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-        <li><a href="/politica">Política de Privacidad</a></li>
-      </ul>
-    </main>
+      <nav className="space-y-2 flex flex-col items-center">
+        <Link to="/fotos" className="text-blue-500 hover:underline">📸 Fotos</Link>
+        <Link to="/galeria" className="text-blue-500 hover:underline">🎨 Galería</Link>
+        <Link to="/reproducciones" className="text-blue-500 hover:underline">🎶 Reproducciones</Link>
+        <Link to="/noticias" className="text-blue-500 hover:underline">📰 Noticias</Link>
+        <Link to="/sube-tu-mix" className="text-blue-500 hover:underline">📤 Sube tu Mix</Link>
+        <Link to="/contacto" className="text-blue-500 hover:underline">📬 Contacto</Link>
+        <Link to="/politica" className="text-blue-500 hover:underline">⚖️ Política</Link>
+      </nav>
+    </div>
   );
 };
 
