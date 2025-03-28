@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   useEffect(() => {
@@ -11,10 +12,11 @@ const Home = () => {
       <p>Explora nuestras secciones para subir tu mix, escuchar mezclas, ver fotos y mucho más.</p>
 
       <ul style={{ marginTop: "1rem" }}>
+	    <li><a href="/fotos">Fotos</a></li>
+		<Link to="/noticias">Noticias</Link>
+		<li><a href="/galeria">Galería</a></li>
+		<li><a href="/reproduccion">Reproducción</a></li>
         <li><a href="/sube-tu-mix">Sube tu Mix</a></li>
-        <li><a href="/galeria">Galería</a></li>
-        <li><a href="/reproduccion">Reproducción</a></li>
-        <li><a href="/fotos">Fotos</a></li>
         <li><a href="/contacto">Contacto</a></li>
         <li><a href="/politica">Política de Privacidad</a></li>
       </ul>
