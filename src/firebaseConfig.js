@@ -6,7 +6,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyC5asymQv69BnYLqX15PaPROU7ypoe1Bg",
   authDomain: "dj-sombra-visualizer.firebaseapp.com",
   projectId: "dj-sombra-visualizer",
-  storageBucket: "dj-sombra-visualizer.appspot.com",
+  storageBucket: "dj-sombra-visualizer.firebasestorage.app",
   messagingSenderId: "5925836953",
   appId: "1:5925836953:web:53c0a2301213d89c985808"
 };
