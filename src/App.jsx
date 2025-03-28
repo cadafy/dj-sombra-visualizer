@@ -3,13 +3,12 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import SubeTuMix from "./pages/SubeTuMix";
 
 function App() {
-  useEffect(() => {
-    // Redirección al dominio principal si no estás en el correcto
-    const dominioPrincipal = "https://dj-sombra.vercel.app";
-    if (window.location.hostname !== "dj-sombra.vercel.app") {
-      window.location.href = dominioPrincipal + window.location.pathname;
-    }
-  }, []);
+// useEffect(() => {
+//   const dominioPrincipal = "https://dj-sombra.vercel.app";
+//   if (window.location.hostname !== "dj-sombra.vercel.app") {
+//     window.location.href = dominioPrincipal + window.location.pathname;
+//   }
+// }, []);
 
   return (
     <Router>
