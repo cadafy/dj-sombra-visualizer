@@ -2,9 +2,7 @@
   "buildCommand": "npm install -g vite && npm run build",
   "installCommand": "npm install --ignore-scripts=false",
   "outputDirectory": "dist",
-{
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]
-}
 }
