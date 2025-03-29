@@ -1,0 +1,22 @@
+﻿{
+  "name": "DJ Sombra Caliente",
+  "short_name": "SombraCaliente",
+  "description": "Sitio oficial de DJ Sombra Caliente: mezclas, fotos, visuales y noticias calientes del mundo DJ.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff9f0",
+  "theme_color": "#e25822",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

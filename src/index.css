@@ -1,0 +1,16 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilo tipo blog */
+body {
+  @apply font-serif text-gray-800 bg-orange-50 leading-relaxed;
+}
+
+h1, h2, h3 {
+  @apply font-sans text-orange-600;
+}
+
+p {
+  @apply text-base text-gray-700;
+}

@@ -1,29 +1,36 @@
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className="min-h-screen bg-white text-gray-900 p-8">
+    <motion.div
+      className="max-w-3xl mx-auto px-6 py-14 bg-white text-gray-800 rounded-3xl shadow-2xl font-serif"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       <Helmet>
-        <title>Inicio | DJ Sombra Caliente</title>
-      </Helmet>
+  <title>Inicio | DJ Sombra Caliente</title>
+  <meta name="description" content="Sitio oficial de DJ Sombra Caliente: mixes, fotos, visuales y noticias frescas del mundo DJ. ¡Siente el ritmo!" />
+  
+  {/* Open Graph para redes sociales */}
+  <meta property="og:title" content="DJ Sombra Caliente" />
+  <meta property="og:description" content="Descubre lo último de DJ Sombra Caliente: mezclas, fotos, noticias y más." />
+  <meta property="og:image" content="/favicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dj-sombra-visualizer.vercel.app/" />
+</Helmet>
 
-      <h1 className="text-4xl font-extrabold mb-4 flex items-center gap-2">
+      <h1 className="text-5xl font-bold text-center text-orange-600 mb-6 tracking-wide">
         🎧 Bienvenido a DJ Sombra Caliente 🔥
       </h1>
-      <p className="mb-6 text-lg">
-        Descubre música, fotos y noticias del mundo DJ.
-      </p>
 
-      <ul className="space-y-2 text-blue-600 font-semibold underline">
-        <li>📸 <Link to="/fotos">Fotos</Link></li>
-        <li>🎨 <Link to="/galeria">Galería</Link></li>
-        <li>🎶 <Link to="/reproducciones">Reproducciones</Link></li>
-        <li>📰 <Link to="/noticias">Noticias</Link></li>
-        <li>🌟 <Link to="/sube-tu-mix">Sube tu Mix</Link></li>
-        <li>📬 <Link to="/contacto">Contacto</Link></li>
-        <li>⚖️ <Link to="/politica">Política</Link></li>
-      </ul>
-    </div>
+      <p className="text-lg leading-relaxed text-center max-w-xl mx-auto">
+        Descubre mezclas, fotos, visuales, y noticias del mundo DJ con el estilo que
+        enciende la pista. Este es tu espacio para vibrar con la música más caliente 🎶
+      </p>
+    </motion.div>
   );
-}
+};
+
+export default Home;
