@@ -1,115 +1,143 @@
 ﻿import { useState } from "react";
-import { motion } from "framer-motion";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../firebaseConfig";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { usePageTitle } from "../usePageTitle";
-import { storage, db } from "../firebaseConfig";
+import {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
+import { fadeIn } from "../animations";
 
 export default function SubeTuMix() {
   const [nombre, setNombre] = useState("");
   const [archivo, setArchivo] = useState(null);
+  const [imagen, setImagen] = useState(null);
+  const [genero, setGenero] = useState("reggaeton");
   const [mensaje, setMensaje] = useState("");
-  const [error, setError] = useState("");
-  const [cargando, setCargando] = useState(false);
-
-  usePageTitle("Sube tu Mix 🎧 - DJ Sombra Caliente");
+  const [subiendo, setSubiendo] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!nombre || !archivo) {
-      setError("Por favor completa todos los campos.");
-      setMensaje("");
+      setMensaje("Por favor completa al menos tu nombre y el mix.");
       return;
     }
 
-    setError("");
-    setMensaje("");
-    setCargando(true);
-
     try {
-      const archivoRef = ref(storage, `mixes/${Date.now()}-${archivo.name}`);
-      const uploadTask = uploadBytesResumable(archivoRef, archivo);
+      setSubiendo(true);
 
-      uploadTask.on(
-        "state_changed",
-        null,
-        (err) => {
-          console.error(err);
-          setError("Error al subir el archivo.");
-          setCargando(false);
-        },
-        async () => {
-          const url = await getDownloadURL(uploadTask.snapshot.ref);
+      // Subir audio
+      const archivoRef = ref(storage, `mixes/${archivo.name}`);
+      const uploadAudio = uploadBytesResumable(archivoRef, archivo);
+      await new Promise((resolve, reject) => {
+        uploadAudio.on("state_changed", null, reject, resolve);
+      });
+      const archivoURL = await getDownloadURL(uploadAudio.snapshot.ref);
 
-          await addDoc(collection(db, "submissions"), {
-            nombre,
-            archivoURL: url,
-            creado: serverTimestamp(),
-          });
+      // Subir imagen (opcional)
+      let imagenURL = "";
+      if (imagen) {
+        const imagenRef = ref(storage, `portadas/${imagen.name}`);
+        const uploadImg = uploadBytesResumable(imagenRef, imagen);
+        await new Promise((resolve, reject) => {
+          uploadImg.on("state_changed", null, reject, resolve);
+        });
+        imagenURL = await getDownloadURL(uploadImg.snapshot.ref);
+      }
 
-          setMensaje("✅ ¡Tu mix ha sido enviado con éxito!");
-          setNombre("");
-          setArchivo(null);
-          setCargando(false);
-        }
-      );
-    } catch (err) {
-      console.error("Error al subir:", err);
-      setMensaje("");
-      setError("Error al subir el archivo.");
+      // Guardar en Firestore
+      await addDoc(collection(db, "submissions"), {
+        nombre,
+        archivoURL,
+        imagenURL,
+        genero,
+        fecha: serverTimestamp(),
+      });
+
+      setMensaje("🎉 ¡Mix subido con éxito!");
+      setNombre("");
+      setArchivo(null);
+      setImagen(null);
+      setGenero("reggaeton");
+    } catch (error) {
+      console.error("Error al subir el mix:", error);
+      setMensaje("Error al subir el mix.");
+    } finally {
+      setSubiendo(false);
     }
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="max-w-2xl mx-auto px-6 py-10 mt-10 bg-gradient-to-tr from-orange-100 to-white rounded-3xl shadow-2xl border border-orange-300 font-serif"
+      className="max-w-3xl mx-auto px-4 py-12 md:py-20 text-center font-serif min-h-screen"
+      {...fadeIn}
     >
-	<Helmet>
-  <title>Sube tu Mix | DJ Sombra Caliente</title>
-  <meta name="description" content="¿Eres DJ? Sube tu mix y haz vibrar al mundo. DJ Sombra Caliente quiere escucharte." />
-  <meta property="og:title" content="Sube tu Mix | DJ Sombra Caliente" />
-  <meta property="og:description" content="¡Conviértete en parte del movimiento y comparte tu talento con la comunidad!" />
-  <meta property="og:image" content="/favicon.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tusitio.com/sube-tu-mix" />
-</Helmet>
-      <h1 className="text-4xl font-bold text-orange-600 mb-4 text-center tracking-wider">
-        🎧 Sube tu Mix
+      <Helmet>
+        <title>Sube tu Mix | DJ Sombra Caliente</title>
+        <meta name="description" content="¿Eres DJ? Comparte tu mix, selecciona tu género y ponle portada." />
+      </Helmet>
+
+      <h1 className="text-4xl sm:text-5xl font-bold text-orange-500 mb-6 drop-shadow">
+        🎵 Sube tu Mix
       </h1>
-      <p className="text-center text-gray-700 mb-8">
-        Comparte tu talento y forma parte del universo de DJ Sombra Caliente. Solo sube tu mix y déjanos escucharte.
+      <p className="text-lg text-gray-700 mb-10">
+        ¿Tienes talento? Comparte tu mezcla 🔥
       </p>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto text-left">
         <input
           type="text"
-          placeholder="Tu nombre o alias"
-          className="p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 outline-none"
+          placeholder="Tu nombre o alias DJ"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
+          className="w-full border p-3 rounded-lg shadow-sm"
         />
+
         <input
           type="file"
           accept="audio/*"
-          className="p-3 border border-gray-300 rounded-xl bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-500 file:text-white hover:file:bg-orange-600"
           onChange={(e) => setArchivo(e.target.files[0])}
+          className="w-full border p-3 rounded-lg shadow-sm"
         />
+
+        <select
+          value={genero}
+          onChange={(e) => setGenero(e.target.value)}
+          className="w-full border p-3 rounded-lg shadow-sm"
+        >
+          <option value="reggaeton">🎶 Reggaetón</option>
+          <option value="techno">🔊 Techno</option>
+          <option value="salsa">💃 Salsa</option>
+          <option value="latino">🎺 Latino</option>
+          <option value="trap">🎧 Trap</option>
+        </select>
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImagen(e.target.files[0])}
+          className="w-full border p-3 rounded-lg shadow-sm"
+        />
+
         <button
           type="submit"
-          disabled={cargando}
-          className="bg-orange-600 text-white font-bold py-3 rounded-xl hover:bg-orange-700 transition"
+          disabled={subiendo}
+          className={`w-full py-3 px-6 rounded-xl text-white font-semibold shadow-md transition-all duration-300 flex items-center justify-center gap-2
+            ${
+              subiendo
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-orange-500 hover:bg-orange-600 hover:scale-105"
+            }`}
         >
-          {cargando ? "Subiendo..." : "🔥 Subir Mix Ahora"}
+          {subiendo ? "Subiendo..." : "📤 Enviar mix"}
         </button>
-      </form>
 
-      {mensaje && <p className="mt-4 text-green-600 font-medium text-center">{mensaje}</p>}
-      {error && <p className="mt-4 text-red-500 font-medium text-center">{error}</p>}
+        {mensaje && (
+          <p className="text-sm text-center mt-2 text-orange-600 font-medium">{mensaje}</p>
+        )}
+      </form>
     </motion.div>
   );
 }

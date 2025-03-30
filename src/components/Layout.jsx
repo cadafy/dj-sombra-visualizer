@@ -1,4 +1,5 @@
 ﻿import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 export default function Layout({ children }) {
   return (
@@ -22,6 +23,7 @@ export default function Layout({ children }) {
       {/* Contenido dinámico */}
       <main className="flex-grow container mx-auto px-4 py-6">
         {children}
+		<Footer />
       </main>
 
       {/* Footer */}

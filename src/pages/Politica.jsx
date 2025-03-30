@@ -1,52 +1,45 @@
-import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
+import { fadeIn } from "../animations";
 
 export default function Politica() {
   return (
     <motion.div
-      className="max-w-3xl mx-auto py-12 px-6 font-serif bg-white text-gray-800 rounded-3xl shadow-xl"
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      className="max-w-4xl mx-auto p-6 font-serif"
+      {...fadeIn}
     >
-    <Helmet>
-  <title>Política de Privacidad | DJ Sombra Caliente</title>
-  <meta name="description" content="Lee cómo protegemos tus datos en el sitio oficial de DJ Sombra Caliente." />
-  <meta property="og:title" content="Política de Privacidad" />
-  <meta property="og:description" content="Tu privacidad es importante. Aquí te explicamos cómo manejamos tus datos." />
-  <meta property="og:image" content="/favicon.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dj-sombra-visualizer.vercel.app/politica" />
-</Helmet>
+      <Helmet>
+        <title>Política de Privacidad | DJ Sombra Caliente</title>
+        <meta name="description" content="Lee nuestra política de privacidad y cómo protegemos tus datos en DJ Sombra Caliente." />
+        <meta property="og:title" content="Política de Privacidad | DJ Sombra Caliente" />
+        <meta property="og:description" content="Transparencia, protección y respeto a tu información como visitante y fan." />
+        <meta property="og:image" content="/favicon.png" />
+        <meta property="og:type" content="document" />
+        <meta property="og:url" content="https://tusitio.com/politica" />
+      </Helmet>
 
-      <h1 className="text-4xl font-bold text-center mb-6 text-orange-600 tracking-wide">
-        馃摉 Pol铆tica de Privacidad
+      <h1 className="text-4xl font-bold text-orange-500 mb-6 drop-shadow text-center">
+        ?? Política de Privacidad
       </h1>
 
-      <section className="text-lg leading-relaxed space-y-6">
-        <p>
-          En DJ Sombra Caliente, valoramos profundamente tu privacidad. Esta p谩gina
-          detalla c贸mo recopilamos, usamos y protegemos tu informaci贸n.
-        </p>
+      <p className="text-gray-800 text-base sm:text-lg mb-4 leading-relaxed">
+        En DJ Sombra Caliente, tu privacidad es una prioridad. Toda la información recopilada a través de formularios o interacciones en el sitio será utilizada exclusivamente para fines relacionados con la comunidad musical y no será compartida con terceros sin tu consentimiento.
+      </p>
 
-        <h2 className="text-xl font-bold text-orange-500 mt-6">馃搶 Datos que recopilamos</h2>
-        <p>
-          Podemos recopilar tu nombre, correo electr贸nico y mensaje cuando usas nuestro
-          formulario de contacto o subes un mix. Nunca vendemos ni compartimos tus datos.
-        </p>
+      <p className="text-gray-800 text-base sm:text-lg mb-4 leading-relaxed">
+        Utilizamos tecnologías como cookies y formularios para brindarte una mejor experiencia en el sitio. Puedes desactivarlas desde tu navegador si así lo deseas.
+      </p>
 
-        <h2 className="text-xl font-bold text-orange-500 mt-6">馃敀 Protecci贸n de datos</h2>
-        <p>
-          Tus datos se almacenan en Firebase y est谩n protegidos con autenticaci贸n y
-          cifrado. Solo el equipo autorizado puede acceder a esta informaci贸n.
-        </p>
+      <p className="text-gray-800 text-base sm:text-lg mb-4 leading-relaxed">
+        Para cualquier duda o solicitud de eliminación de tus datos, puedes contactarnos en cualquier momento a través de nuestra página de{" "}
+        <a href="/contacto" className="text-blue-600 hover:text-orange-500 transition-all duration-300 underline">
+          contacto
+        </a>.
+      </p>
 
-        <h2 className="text-xl font-bold text-orange-500 mt-6">馃摤 Contacto</h2>
-        <p>
-          Si tienes dudas sobre nuestra pol铆tica de privacidad, puedes escribirnos en
-          la secci贸n de <a href="/contacto" className="text-blue-600 underline hover:text-blue-800">Contacto</a>.
-        </p>
-      </section>
+      <p className="text-sm text-gray-500 mt-8 italic text-center">
+        última actualización: 29 de marzo de 2025
+      </p>
     </motion.div>
   );
 }

@@ -1,48 +1,46 @@
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
+import { fadeIn } from "../animations";
+import Comentarios from "../components/Comentarios";
 
 export default function Fotos() {
   const fotos = [
-    "https://source.unsplash.com/600x400/?dj,party",
-    "https://source.unsplash.com/600x400/?concert,lights",
-    "https://source.unsplash.com/600x400/?music,crowd",
-    "https://source.unsplash.com/600x400/?dj,club",
-    "https://source.unsplash.com/600x400/?dj,festival",
-    "https://source.unsplash.com/600x400/?dj,stage",
+    "https://source.unsplash.com/800x600/?dj,7",
+    "https://source.unsplash.com/800x600/?music,8",
+    "https://source.unsplash.com/800x600/?crowd,9",
+    "https://source.unsplash.com/800x600/?visuals,10",
+    "https://source.unsplash.com/800x600/?party,11",
+    "https://source.unsplash.com/800x600/?club,12",
   ];
 
   return (
     <motion.div
-      className="p-6 max-w-6xl mx-auto bg-white shadow-xl rounded-3xl mt-10 mb-20"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      className="max-w-6xl mx-auto px-4 py-12 md:py-20 text-center font-serif min-h-screen"
+      {...fadeIn}
     >
       <Helmet>
-  <title>Fotos | DJ Sombra Caliente</title>
-  <meta name="description" content="Mira las mejores capturas de los shows más encendidos de DJ Sombra Caliente." />
-  <meta property="og:title" content="Galería de Fotos | DJ Sombra Caliente" />
-  <meta property="og:description" content="Recorre momentos inolvidables y la energía en vivo de cada evento." />
-  <meta property="og:image" content="/favicon.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dj-sombra-visualizer.vercel.app/fotos" />
-</Helmet>
+        <title>Fotos | DJ Sombra Caliente</title>
+        <meta name="description" content="Explora las fotos más intensas de DJ Sombra Caliente en vivo y en eventos especiales." />
+        <meta property="og:title" content="Fotos | DJ Sombra Caliente" />
+        <meta property="og:description" content="Mira los momentos más calientes capturados en imágenes." />
+        <meta property="og:image" content="/favicon.png" />
+        <meta property="og:type" content="image.gallery" />
+        <meta property="og:url" content="https://tusitio.com/fotos" />
+      </Helmet>
 
-      <h1 className="text-5xl font-bold text-center text-orange-600 mb-4 tracking-wide">
-        📸 Galería de Fotos
+      <h1 className="text-5xl font-bold text-orange-500 mb-8 drop-shadow">
+        📸 Fotos en Acción
       </h1>
-      <p className="text-center text-gray-600 text-lg mb-10 font-serif">
-        Capturando la energía, el fuego y los momentos inolvidables de DJ Sombra Caliente.
+      <p className="text-lg text-gray-700 mb-10">
+        Momentos capturados en sets 🔥, shows 🎧 y fiesta total 🎉
       </p>
 
-      {/* Grid de fotos */}
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12">
         {fotos.map((src, index) => (
           <motion.div
             key={index}
-            whileHover={{ scale: 1.05 }}
-            className="overflow-hidden rounded-2xl shadow-lg"
+            whileHover={{ scale: 1.03 }}
+            className="overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
           >
             <img
               src={src}
@@ -53,13 +51,8 @@ export default function Fotos() {
         ))}
       </div>
 
-      {/* Navegación inferior */}
-      <nav className="mt-10 flex flex-wrap justify-center gap-4 text-orange-600 font-semibold">
-        <Link to="/" className="hover:underline hover:text-orange-800 transition">🏠 Inicio</Link>
-        <Link to="/galeria" className="hover:underline hover:text-orange-800 transition">🎨 Galería</Link>
-        <Link to="/reproducciones" className="hover:underline hover:text-orange-800 transition">🎵 Reproducciones</Link>
-        <Link to="/noticias" className="hover:underline hover:text-orange-800 transition">📰 Noticias</Link>
-      </nav>
+      {/* Comentarios por tipo */}
+      <Comentarios tipo="fotos" />
     </motion.div>
   );
 }
